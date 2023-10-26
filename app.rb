@@ -1,5 +1,6 @@
 require "sinatra"
 require "sinatra/reloader"
+require "active_support/all"
 
 get("/") do
   "
@@ -44,7 +45,20 @@ get("/payment/new") do
   end
 
 get("/payment/results") do
-  #@the_num = params.fetch("number").to_f
-  #@theresult = Math.sqrt(@the_num)
+  r = params.fetch("apr").to_f
+  pv = params.fetch("principal").to_f
+  y = params.fetch("years").to_f
+  no_of_p = y * -12.0
+  rate = r / 1200.0
+
+  result = (rate * pv) / (1 - ((1 + rate)**no_of_p))
+  #@payment_result = sprintf("$%.2f", result.round(2))
+  @payment_result = result.to_fs(:currency)
+
+  
+  
+  @apr = sprintf("%.4f%%", r)
+  @principal = sprintf("$%.2f", pv) 
+  @years = y
   erb(:payment_results)
 end

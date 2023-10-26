@@ -1,0 +1,17 @@
+user_apr=5&user_years=5&user_pv=555
+
+</br>
+<form action="/payment/results">
+ <label for="user_apr">APR</label>
+<input type="text" id="user_apr" name="apr" style="width: 300px;" placeholder="E.g. 5.42">
+
+ <label for="user_years">Number of years</label>
+<input type="text" id="user_years" name="years" style="width: 300px;" placeholder="How many years to repay?">
+
+ <label for="user_principal">Principal</label>
+<input type="text" id="user_principal" name="principal" style="width: 300px;" placeholder="How much Principal?">
+
+<button>Calculate Monthly Payment</button>
+</form>
+
+<%= params %>
